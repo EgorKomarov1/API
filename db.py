@@ -1,81 +1,58 @@
-from typing import cast
-
-from psycopg2.extras import RealDictCursor
+from contextlib import contextmanager
+from typing import Generator
 from psycopg2 import pool
+from psycopg2.extras import RealDictCursor
 
 from config import database_url
 from logger import logger
 
-from contextlib import contextmanager
+_connection_pool: pool.ThreadedConnectionPool | None = None
 
 
-connection_pool: pool.SimpleConnectionPool | None = None
-_pool_initialized = False
+def init_connection_pool() -> pool.ThreadedConnectionPool:
+    global _connection_pool
 
-
-def init_connection_pool():
-    global connection_pool, _pool_initialized
-
-    if _pool_initialized:
-        return connection_pool
+    if _connection_pool is not None:
+        return _connection_pool
 
     try:
-        connection_pool = pool.SimpleConnectionPool(
+        _connection_pool = pool.ThreadedConnectionPool(
             minconn=1,
             maxconn=10,
             dsn=database_url
         )
-        _pool_initialized = True
-        return connection_pool
+        return _connection_pool
     except Exception as e:
         logger.error(e)
         raise
 
 
-def get_db_connection():
-    global connection_pool
-
-    if connection_pool is None:
-        init_connection_pool()
-
-    pool_instance = cast(pool.SimpleConnectionPool, connection_pool)
-
-    try:
-        return pool_instance.getconn()
-    except Exception as e:
-        logger.error(e)
-        raise
-
-
-def return_db_connection(conn):
-    global connection_pool
-
-    pool_instance = cast(pool.SimpleConnectionPool, connection_pool)
-
-    try:
-        pool_instance.putconn(conn)
-    except Exception as e:
-        logger.error(e)
+def _get_pool() -> pool.ThreadedConnectionPool:
+    if _connection_pool is None:
+        return init_connection_pool()
+    return _connection_pool
 
 
 @contextmanager
-def get_db_context():
+def get_db_context() -> Generator[RealDictCursor, None, None]:
+    db_pool = _get_pool()
     conn = None
     cursor = None
     try:
-        conn = get_db_connection()
+        conn = db_pool.getconn()
         cursor = conn.cursor(cursor_factory=RealDictCursor)
         yield cursor
         conn.commit()
     except Exception as e:
         if conn:
             conn.rollback()
-        raise e
+        logger.error(e)
+        raise
     finally:
         if cursor:
             cursor.close()
         if conn:
-            return_db_connection(conn)
+            db_pool.putconn(conn)
 
 
 def test_connection() -> bool:
