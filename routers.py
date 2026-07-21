@@ -107,7 +107,7 @@ def get_routes(limit: int = Query(50, ge=1, le=1000),
                page: int = Query(1, ge=1)):
     with get_db_context() as cursor:
         cursor.execute("""SELECT route_no
-                               , validity
+                               , concat(validity) AS validity
                                , departure_airport
                                , arrival_airport
                                , airplane_code
