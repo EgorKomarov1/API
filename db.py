@@ -1,10 +1,11 @@
-from typing import cast, Generator, Any
+from typing import cast
 
-import psycopg2
 from psycopg2.extras import RealDictCursor
 from psycopg2 import pool
+
 from config import database_url
 from logger import logger
+
 from contextlib import contextmanager
 
 
