@@ -1,9 +1,9 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from db import test_connection, init_connection_pool
+from src.db import test_connection, init_connection_pool
 from logger import logger
-from routers import router
+from src.api.routers import router
 
 
 @asynccontextmanager
