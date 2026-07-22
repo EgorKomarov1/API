@@ -2,7 +2,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from src.db import test_connection, init_connection_pool
-from logger import logger
+from src.logger import logger
 from src.api.routers import router
 
 

@@ -3,8 +3,8 @@ from typing import Generator
 from psycopg2 import pool
 from psycopg2.extras import RealDictCursor
 
-from config import database_url
-from logger import logger
+from src.config import database_url
+from src.logger import logger
 
 _connection_pool: pool.ThreadedConnectionPool | None = None
 
