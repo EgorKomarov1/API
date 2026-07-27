@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Query
 from src.db import get_db_context
 from sqlalchemy import text
-from src.api.schemas import Airplane, Airport, BoardingPass, Booking, Flight, Route, Seat, Segment, Ticket, Passenger
+from src.api.v1.schemas import Airplane, Airport, BoardingPass, Booking, Flight, Route, Seat, Segment, Ticket, Passenger
 
 router = APIRouter()
 
@@ -80,7 +80,8 @@ def get_flights(limit: int = Query(50, ge=1, le=1000),
                          , scheduled_departure
                          , scheduled_arrival
                          , scheduled_arrival - scheduled_departure AS duration
-                    FROM bookings.flights
+                    FROM bookings.flights5232
+                    
                     WHERE status = 'Scheduled'
                     ORDER BY scheduled_departure
                     LIMIT :limit OFFSET :offset""")

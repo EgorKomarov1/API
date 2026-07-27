@@ -2,7 +2,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from src.db import test_connection, engine
 from src.logger import logger
-from src.api.routers import router
+from src.api.v1.routers import router
 
 
 @asynccontextmanager
