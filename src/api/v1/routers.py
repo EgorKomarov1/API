@@ -80,8 +80,7 @@ def get_flights(limit: int = Query(50, ge=1, le=1000),
                          , scheduled_departure
                          , scheduled_arrival
                          , scheduled_arrival - scheduled_departure AS duration
-                    FROM bookings.flights5232
-                    
+                    FROM bookings.flights
                     WHERE status = 'Scheduled'
                     ORDER BY scheduled_departure
                     LIMIT :limit OFFSET :offset""")
