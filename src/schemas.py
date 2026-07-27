@@ -58,7 +58,6 @@ class Seat(BaseModel):
 
 
 class Segment(BaseModel):
-    ticket_no: str
     flight_id: int
     fare_conditions: str
     price: Decimal
