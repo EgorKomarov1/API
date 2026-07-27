@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Query
 from src.db import get_db_context
 from sqlalchemy import text
-from src.api.v1.schemas import Airplane, Airport, BoardingPass, Booking, Flight, Route, Seat, Segment, Ticket, Passenger
+from src.schemas import Airplane, Airport, BoardingPass, Booking, Flight, Route, Seat, Segment, Ticket, Passenger
 
-router = APIRouter()
+router = APIRouter(prefix="/v1", tags=['v1'])
 
 
 @router.get("/airplanes", tags=['airplanes'], response_model=list[Airplane])
