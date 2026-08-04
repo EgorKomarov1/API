@@ -2,7 +2,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from src.db import test_connection, engine
 from src.logger import logger
-from src.api import v1_router, v2_router
+from src.api import v2_router
 
 
 @asynccontextmanager
@@ -28,18 +28,7 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-app.include_router(v1_router)
 app.include_router(v2_router)
-
-
-@app.get("/v1")
-def root():
-    return {
-        "message": "API",
-        "version": "1.0.0",
-        "docs": "/docs",
-        "health": "/health"
-    }
 
 
 @app.get("/v2")
