@@ -13,21 +13,11 @@ engine = create_engine(
     pool_pre_ping=True
 )
 
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine, expire_on_commit=False)
 
 
-@contextmanager
-def get_db_context() -> Generator[Session, None, None]:
-    session = SessionLocal()
-    try:
-        yield session
-        session.commit()
-    except Exception as e:
-        session.rollback()
-        logger.error(e)
-        raise
-    finally:
-        session.close()
+def get_db_context() -> Session:
+    return SessionLocal()
 
 
 def test_connection() -> bool:
