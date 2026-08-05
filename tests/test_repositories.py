@@ -1,3 +1,4 @@
+# tests/test_repositories.py
 from src.repositories import (
     get_airplane_data_repository,
     get_airports_data_repository,
@@ -20,9 +21,11 @@ def test_airplanes_repository():
     assert isinstance(result, list)
     assert len(result) <= limit
     if result:
-        assert 'airplane_code' in result[0]
-        assert 'model' in result[0]
-        assert 'range' in result[0]
+        item = result[0]
+        assert 'airplane_code' in item
+        assert 'model' in item
+        assert 'range' in item
+        assert 'speed' in item
 
 
 def test_airports_repository():
@@ -33,9 +36,13 @@ def test_airports_repository():
     assert isinstance(result, list)
     assert len(result) <= limit
     if result:
-        assert 'airport_code' in result[0]
-        assert 'airport_name' in result[0]
-        assert 'city' in result[0]
+        item = result[0]
+        assert 'airport_code' in item
+        assert 'airport_name' in item
+        assert 'city' in item
+        assert 'country' in item
+        assert 'coordinates' in item
+        assert 'timezone' in item
 
 
 def test_boarding_passes_repository():
@@ -46,9 +53,12 @@ def test_boarding_passes_repository():
     assert isinstance(result, list)
     assert len(result) <= limit
     if result:
-        assert 'ticket_no' in result[0]
-        assert 'flight_id' in result[0]
-        assert 'seat_no' in result[0]
+        item = result[0]
+        assert 'ticket_no' in item
+        assert 'flight_id' in item
+        assert 'seat_no' in item
+        assert 'boarding_no' in item
+        assert 'boarding_time' in item
 
 
 def test_bookings_repository():
@@ -59,9 +69,10 @@ def test_bookings_repository():
     assert isinstance(result, list)
     assert len(result) <= limit
     if result:
-        assert 'book_ref' in result[0]
-        assert 'book_date' in result[0]
-        assert 'total_amount' in result[0]
+        item = result[0]
+        assert 'book_ref' in item
+        assert 'book_date' in item
+        assert 'total_amount' in item
 
 
 def test_flights_repository():
@@ -72,9 +83,11 @@ def test_flights_repository():
     assert isinstance(result, list)
     assert len(result) <= limit
     if result:
-        assert 'route_no' in result[0]
-        assert 'scheduled_departure' in result[0]
-        assert 'scheduled_arrival' in result[0]
+        item = result[0]
+        assert 'route_no' in item
+        assert 'scheduled_departure' in item
+        assert 'scheduled_arrival' in item
+        assert 'duration' in item
 
 
 def test_passengers_repository():
@@ -85,9 +98,15 @@ def test_passengers_repository():
     assert isinstance(result, list)
     assert len(result) <= limit
     if result:
-        assert 'passenger_id' in result[0]
-        assert 'passenger_name' in result[0]
-        assert 'ticket_no' in result[0]
+        item = result[0]
+        assert 'passenger_id' in item
+        assert 'passenger_name' in item
+        assert 'ticket_no' in item
+        assert 'flight_id' in item
+        assert 'fare_conditions' in item
+        assert 'book_ref' in item
+        assert 'price' in item
+        assert 'outbound' in item
 
 
 def test_routes_repository():
@@ -98,9 +117,15 @@ def test_routes_repository():
     assert isinstance(result, list)
     assert len(result) <= limit
     if result:
-        assert 'route_no' in result[0]
-        assert 'departure_airport' in result[0]
-        assert 'arrival_airport' in result[0]
+        item = result[0]
+        assert 'route_no' in item
+        assert 'validity' in item
+        assert 'departure_airport' in item
+        assert 'arrival_airport' in item
+        assert 'airplane_code' in item
+        assert 'days_of_week' in item
+        assert 'scheduled_time' in item
+        assert 'duration' in item
 
 
 def test_segments_repository():
@@ -111,9 +136,10 @@ def test_segments_repository():
     assert isinstance(result, list)
     assert len(result) <= limit
     if result:
-        assert 'flight_id' in result[0]
-        assert 'fare_conditions' in result[0]
-        assert 'price' in result[0]
+        item = result[0]
+        assert 'flight_id' in item
+        assert 'fare_conditions' in item
+        assert 'price' in item
 
 
 def test_seats_repository():
@@ -124,9 +150,10 @@ def test_seats_repository():
     assert isinstance(result, list)
     assert len(result) <= limit
     if result:
-        assert 'airplane_code' in result[0]
-        assert 'seat_no' in result[0]
-        assert 'fare_conditions' in result[0]
+        item = result[0]
+        assert 'airplane_code' in item
+        assert 'seat_no' in item
+        assert 'fare_conditions' in item
 
 
 def test_tickets_repository():
@@ -137,6 +164,9 @@ def test_tickets_repository():
     assert isinstance(result, list)
     assert len(result) <= limit
     if result:
-        assert 'ticket_no' in result[0]
-        assert 'book_ref' in result[0]
-        assert 'passenger_name' in result[0]
+        item = result[0]
+        assert 'ticket_no' in item
+        assert 'book_ref' in item
+        assert 'passenger_id' in item
+        assert 'passenger_name' in item
+        assert 'outbound' in item
