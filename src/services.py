@@ -1,85 +1,53 @@
-
 from typing import List, Dict, Any
-from src.repositories import (AirportsRepository, AirplanesRepository, BookingsRepository, BoardingPassesRepository,
-                              SeatsRepository, SegmentsRepository, TicketsRepository, RoutesRepository,
-                              FlightsRepository, PassengersRepository)
+from src.repositories import (
+    get_airplane_data_repository,
+    get_airports_data_repository,
+    get_boarding_passes_repository,
+    get_bookings_repository,
+    get_flights_repository,
+    get_passengers_repository,
+    get_routes_repository,
+    get_segments_repository,
+    get_seats_repository,
+    get_tickets_repository,
+)
 
 
-class AirplaneService:
-    def __init__(self):
-        self.repository = AirplanesRepository()
-
-    def get_airplanes(self, limit: int = 50, offset: int = 0) -> List[Dict[str, Any]]:
-        return self.repository.get_airplane_data(limit, offset)
+def airplanes_service(limit: int = 50, offset: int = 0) -> List[Dict[str, Any]]:
+    return get_airplane_data_repository(limit, offset)
 
 
-class AirportService:
-    def __init__(self):
-        self.repository = AirportsRepository()
-
-    def get_airports(self, limit: int = 50, offset: int = 0) -> List[Dict[str, Any]]:
-        return self.repository.get_airports_data(limit, offset)
+def airports_service(limit: int = 50, offset: int = 0) -> List[Dict[str, Any]]:
+    return get_airports_data_repository(limit, offset)
 
 
-class BoardingPassService:
-    def __init__(self):
-        self.repository = BoardingPassesRepository()
-
-    def get_boarding_passes(self, limit: int = 50, offset: int = 0) -> List[Dict[str, Any]]:
-        return self.repository.get_boarding_passes(limit, offset)
+def boarding_passes_service(limit: int = 50, offset: int = 0) -> List[Dict[str, Any]]:
+    return get_boarding_passes_repository(limit, offset)
 
 
-class BookingService:
-    def __init__(self):
-        self.repository = BookingsRepository()
-
-    def get_bookings(self, limit: int = 50, offset: int = 0) -> List[Dict[str, Any]]:
-        return self.repository.get_bookings(limit, offset)
+def bookings_service(limit: int = 50, offset: int = 0) -> List[Dict[str, Any]]:
+    return get_bookings_repository(limit, offset)
 
 
-class FlightService:
-    def __init__(self):
-        self.repository = FlightsRepository()
-
-    def get_flights(self, limit: int = 50, offset: int = 0) -> List[Dict[str, Any]]:
-        return self.repository.get_flights(limit, offset)
+def flights_service(limit: int = 50, offset: int = 0) -> List[Dict[str, Any]]:
+    return get_flights_repository(limit, offset)
 
 
-class PassengerService:
-    def __init__(self):
-        self.repository = PassengersRepository()
-
-    def get_passengers(self, limit: int = 50, offset: int = 0) -> List[Dict[str, Any]]:
-        return self.repository.get_passengers(limit, offset)
+def passengers_service(limit: int = 50, offset: int = 0) -> List[Dict[str, Any]]:
+    return get_passengers_repository(limit, offset)
 
 
-class RouteService:
-    def __init__(self):
-        self.repository = RoutesRepository()
-
-    def get_routes(self, limit: int = 50, offset: int = 0) -> List[Dict[str, Any]]:
-        return self.repository.get_routes(limit, offset)
+def routes_service(limit: int = 50, offset: int = 0) -> List[Dict[str, Any]]:
+    return get_routes_repository(limit, offset)
 
 
-class SegmentService:
-    def __init__(self):
-        self.repository = SegmentsRepository()
-
-    def get_segments(self, limit: int = 50, offset: int = 0) -> List[Dict[str, Any]]:
-        return self.repository.get_segments(limit, offset)
+def segments_service(limit: int = 50, offset: int = 0) -> List[Dict[str, Any]]:
+    return get_segments_repository(limit, offset)
 
 
-class SeatService:
-    def __init__(self):
-        self.repository = SeatsRepository()
-
-    def get_seats(self, limit: int = 50, offset: int = 0) -> List[Dict[str, Any]]:
-        return self.repository.get_seats(limit, offset)
+def seats_service(limit: int = 50, offset: int = 0) -> List[Dict[str, Any]]:
+    return get_seats_repository(limit, offset)
 
 
-class TicketService:
-    def __init__(self):
-        self.repository = TicketsRepository()
-
-    def get_tickets(self, limit: int = 50, offset: int = 0) -> List[Dict[str, Any]]:
-        return self.repository.get_tickets(limit, offset)
+def tickets_service(limit: int = 50, offset: int = 0) -> List[Dict[str, Any]]:
+    return get_tickets_repository(limit, offset)
