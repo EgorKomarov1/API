@@ -12,16 +12,7 @@ engine = create_engine(
 
 
 def get_db_context():
-    conn = engine.connect()
-    try:
-        yield conn
-        conn.commit()
-    except Exception as e:
-        conn.rollback()
-        logger.error(e)
-        raise
-    finally:
-        conn.close()
+    return engine.connect()
 
 
 def test_connection() -> bool:
