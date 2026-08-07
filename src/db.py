@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine, text
 from src.config import database_url
 from src.logger import logger
+from contextlib import contextmanager
 
 
 engine = create_engine(
@@ -11,8 +12,18 @@ engine = create_engine(
 )
 
 
+@contextmanager
 def get_db_context():
-    return engine.connect()
+    conn = engine.connect()
+    try:
+        yield conn
+        conn.commit()
+    except Exception as e:
+        conn.rollback()
+        logger.error(e)
+        raise
+    finally:
+        conn.close()
 
 
 def test_connection() -> bool:
