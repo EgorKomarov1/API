@@ -14,16 +14,12 @@ engine = create_engine(
 
 @contextmanager
 def get_db_context():
-    conn = engine.connect()
-    try:
-        yield conn
-        conn.commit()
-    except Exception as e:
-        conn.rollback()
-        logger.error(e)
-        raise
-    finally:
-        conn.close()
+    with engine.begin() as conn:
+        try:
+            yield conn
+        except Exception as e:
+            logger.error(e)
+            raise
 
 
 def test_connection() -> bool:
