@@ -1,4 +1,4 @@
-from src.db import engine
+from src.database.db import engine
 from src.sql_queries import (airplanes_query, airports_query, bookings_query, boarding_passes_query,
                              seats_query, segments_query, passengers_query, routes_query, flights_query,
                              tickets_query)

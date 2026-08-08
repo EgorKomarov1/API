@@ -1,8 +1,8 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
-from src.db import engine
+from src.database.db import engine
 from src.logger import logger
-from src.api.v2.routers import router
+from src.routing.v2.routers import router
 
 
 @asynccontextmanager
