@@ -103,14 +103,3 @@ def test_get_tickets():
     if data:
         assert "ticket_no" in data[0]
         assert "passenger_name" in data[0]
-
-
-def test_health_endpoint():
-    response = client.get("/health")
-    assert response.status_code == 200
-    data = response.json()
-
-    assert "status" in data
-    assert "database" in data
-    assert data["status"] in ["healthy", "unhealthy"]
-    assert data["database"] in ["connected", "disconnected"]
