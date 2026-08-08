@@ -1,5 +1,5 @@
 from typing import Any
-from src.repositories import (
+from src.repositories.repositories import (
     get_airplane_data_repository,
     get_airports_data_repository,
     get_boarding_passes_repository,

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Query
-from src.schemas import (Airplane, Airport, BoardingPass, Booking, Flight,
+from src.schemas.schemas import (Airplane, Airport, BoardingPass, Booking, Flight,
                          Route, Seat, Segment, Ticket, Passenger)
-from src.services import (
+from src.services.services import (
     airplanes_service,
     airports_service,
     boarding_passes_service,

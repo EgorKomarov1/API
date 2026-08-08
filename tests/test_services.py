@@ -1,5 +1,5 @@
 from unittest.mock import patch
-from src.services import (
+from src.services.services import (
     airplanes_service,
     airports_service,
     boarding_passes_service,
@@ -23,7 +23,7 @@ def test_airplanes_service():
         }
     ]
 
-    with patch('src.services.get_airplane_data_repository') as mock_repo:
+    with patch('src.services.services.get_airplane_data_repository') as mock_repo:
         mock_repo.return_value = mock_data
 
         result = airplanes_service(limit=5, offset=0)
@@ -47,7 +47,7 @@ def test_airports_service():
         }
     ]
 
-    with patch('src.services.get_airports_data_repository') as mock_repo:
+    with patch('src.services.services.get_airports_data_repository') as mock_repo:
         mock_repo.return_value = mock_data
 
         result = airports_service(limit=5, offset=0)
@@ -69,7 +69,7 @@ def test_boarding_passes_service():
         }
     ]
 
-    with patch('src.services.get_boarding_passes_repository') as mock_repo:
+    with patch('src.services.services.get_boarding_passes_repository') as mock_repo:
         mock_repo.return_value = mock_data
 
         result = boarding_passes_service(limit=5, offset=0)
@@ -89,7 +89,7 @@ def test_bookings_service():
         }
     ]
 
-    with patch('src.services.get_bookings_repository') as mock_repo:
+    with patch('src.services.services.get_bookings_repository') as mock_repo:
         mock_repo.return_value = mock_data
 
         result = bookings_service(limit=5, offset=0)
@@ -110,7 +110,7 @@ def test_flights_service():
         }
     ]
 
-    with patch('src.services.get_flights_repository') as mock_repo:
+    with patch('src.services.services.get_flights_repository') as mock_repo:
         mock_repo.return_value = mock_data
 
         result = flights_service(limit=5, offset=0)
@@ -135,7 +135,7 @@ def test_passengers_service():
         }
     ]
 
-    with patch('src.services.get_passengers_repository') as mock_repo:
+    with patch('src.services.services.get_passengers_repository') as mock_repo:
         mock_repo.return_value = mock_data
 
         result = passengers_service(limit=5, offset=0)
@@ -160,7 +160,7 @@ def test_routes_service():
         }
     ]
 
-    with patch('src.services.get_routes_repository') as mock_repo:
+    with patch('src.services.services.get_routes_repository') as mock_repo:
         mock_repo.return_value = mock_data
 
         result = routes_service(limit=5, offset=0)
@@ -180,7 +180,7 @@ def test_segments_service():
         }
     ]
 
-    with patch('src.services.get_segments_repository') as mock_repo:
+    with patch('src.services.services.get_segments_repository') as mock_repo:
         mock_repo.return_value = mock_data
 
         result = segments_service(limit=5, offset=0)
@@ -200,7 +200,7 @@ def test_seats_service():
         }
     ]
 
-    with patch('src.services.get_seats_repository') as mock_repo:
+    with patch('src.services.services.get_seats_repository') as mock_repo:
         mock_repo.return_value = mock_data
 
         result = seats_service(limit=5, offset=0)
@@ -222,7 +222,7 @@ def test_tickets_service():
         }
     ]
 
-    with patch('src.services.get_tickets_repository') as mock_repo:
+    with patch('src.services.services.get_tickets_repository') as mock_repo:
         mock_repo.return_value = mock_data
 
         result = tickets_service(limit=5, offset=0)
