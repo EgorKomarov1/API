@@ -20,13 +20,3 @@ def get_db_context():
         except Exception as e:
             logger.error(e)
             raise
-
-
-def test_connection() -> bool:
-    try:
-        with get_db_context() as conn:
-            result = conn.execute(text("SELECT 1"))
-            return result.fetchone() is not None
-    except Exception as e:
-        logger.error(e)
-        return False
