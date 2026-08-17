@@ -9,6 +9,7 @@ class Airplane(BaseModel):
     model: dict
     range: int
     speed: Optional[int]
+    max_flight_time_hours: float
 
 
 class Airport(BaseModel):
