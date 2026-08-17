@@ -1,6 +1,6 @@
 from typing import Any
 from src.repositories.repositories import (
-    get_airplane_data_repository,
+    get_airplanes_data_repository,
     get_airports_data_repository,
     get_boarding_passes_repository,
     get_bookings_repository,
@@ -14,7 +14,9 @@ from src.repositories.repositories import (
 
 
 def airplanes_service(limit: int = 50, offset: int = 0) -> list[dict[str, Any]]:
-    return get_airplane_data_repository(limit, offset)
+    df = get_airplanes_data_repository(limit, offset)
+    df['max_flight_time_hours'] = round(df['range'] / df['speed'], 2)
+    return df.to_dict(orient='records')
 
 
 def airports_service(limit: int = 50, offset: int = 0) -> list[dict[str, Any]]:

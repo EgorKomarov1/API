@@ -1,11 +1,12 @@
 from src.database.db import engine, get_sql
+import pandas as pd
 
 
-def get_airplane_data_repository(limit: int = 50, offset: int = 0):
+def get_airplanes_data_repository(limit: int = 50, offset: int = 0):
     airplanes_query = get_sql("select_airplanes.sql")
     with engine.begin() as conn:
-        result = conn.execute(airplanes_query, {"limit": limit, "offset": offset})
-        return result.mappings().all()
+        result = conn.execute(airplanes_query, {'limit': limit, 'offset': offset})
+        return pd.DataFrame(result)
 
 
 def get_airports_data_repository(limit: int = 50, offset: int = 0):
