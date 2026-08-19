@@ -11,19 +11,20 @@ from src.services.services import (
     seats_service,
     tickets_service,
 )
+import pandas as pd
 
 
 def test_airplanes_service():
-    mock_data = [
+    mock_data = pd.DataFrame([
         {
             'airplane_code': 'PG001',
             'model': {'en': 'Boeing 737'},
             'range': 5000,
             'speed': 800
         }
-    ]
+    ])
 
-    with patch('src.services.services.get_airplane_data_repository') as mock_repo:
+    with patch('src.services.services.get_airplanes_data_repository') as mock_repo:
         mock_repo.return_value = mock_data
 
         result = airplanes_service(limit=5, offset=0)

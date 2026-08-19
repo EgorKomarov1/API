@@ -10,7 +10,8 @@ def test_airplanes_router():
         {"airplane_code": "PG001",
          "model": {"en": "Boeing 737"},
          "range": 5000,
-         "speed": 800
+         "speed": 800,
+         "max_flight_time_hours": 2.5
          }
     ]
 

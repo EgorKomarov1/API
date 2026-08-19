@@ -1,6 +1,5 @@
-# tests/test_repositories.py
 from src.repositories.repositories import (
-    get_airplane_data_repository,
+    get_airplanes_data_repository,
     get_airports_data_repository,
     get_boarding_passes_repository,
     get_bookings_repository,
@@ -11,17 +10,20 @@ from src.repositories.repositories import (
     get_seats_repository,
     get_tickets_repository,
 )
+import pandas as pd
 
 
 def test_airplanes_repository():
     limit = 5
     offset = 0
-    result = get_airplane_data_repository(limit, offset)
+    result = get_airplanes_data_repository(limit, offset)
 
-    assert isinstance(result, list)
+    # ✅ Теперь это DataFrame
+    assert isinstance(result, pd.DataFrame)
     assert len(result) <= limit
-    if result:
-        item = result[0]
+
+    if not result.empty:
+        item = result.iloc[0].to_dict()
         assert 'airplane_code' in item
         assert 'model' in item
         assert 'range' in item
