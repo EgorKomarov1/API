@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from src.database.db import engine
 from src.logger import logger
 from src.routing.v2.routers import router
-from src.middlewares.process_time import add_process_time_header
+from src.middlewares.process_time import log_process_time
 
 
 @asynccontextmanager
@@ -26,4 +26,4 @@ app = FastAPI(
 
 app.include_router(router)
 
-app.middleware('http')(add_process_time_header)
+app.middleware('http')(log_process_time)
