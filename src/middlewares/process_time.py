@@ -12,6 +12,4 @@ async def add_process_time_header(request: Request, call_next):
 
     logger.info("%s %s выполнилось за %s", request.method, request.url.path, process_time)
 
-    response.headers["X-Process-Time"] = str(process_time)
-
     return response
